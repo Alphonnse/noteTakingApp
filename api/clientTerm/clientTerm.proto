@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package clientTerm;
+
+option go_package = "github.com/Alphonnse/noteTakingApp/pkg/clientTerm;clientTerm";
+
+service clientTerm {
+  rpc CreateNote(AddNoteRequest) returns (NoteIDReplay);
+  rpc GetNotesUsername(GetNotesByUsername) returns (RequestedNotes);
+  rpc GetNoteID(GetNoteByID) returns (RequestedNote);
+}
+
+message AddNoteRequest {
+  string username = 1;
+  string noteText = 2;
+}
+message NoteIDReplay {
+  string username = 1;
+  string noteID = 2;
+}
+
+message GetNotesByUsername { 
+	string username = 1; 
+}
+message GetNoteByID {
+  string username = 1;
+  string noteID = 2;
+}
+message RequestedNote {
+  string noteID = 1;
+  string noteText = 2;
+}
+message RequestedNotes {
+  repeated string noteID = 1;
+  repeated string noteText = 2;
+}
